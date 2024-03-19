@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <title>web3task</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              flex: {
+                '1/2': '1 1 calc( 50% - 1rem)',
+              },
+              width:{
+                'xfull':'calc(100% + 8px)',
+              },
+              height:{
+                'xfull':'calc(100% + 8px)',
+              }
+            }
+          }
+        }
+      </script>
+    <style>
+        *, ::after, ::before{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root{
+            --text : rgba(255,255,255, 1);
+            --text-h : rgba(255,255,255, 0.8);
+            --text-m : rgba(255,255,255, 0.63);
+            --text-l : rgba(255,255,255, 0.3);
+        }
+        html {
+          font-size: calc(10px + 1vmin) !important;
+        }
+        nav{
+            width: calc( 100% - 20vw);
+        }
+        ::-webkit-scrollbar, ::-webkit-scrollbar-track{
+            display: none;
+        }
+        .blue-gradient{
+            background-image: linear-gradient(to top right, #6100FF 0%, #00FFD1 120%);
+            background-clip:text;
+            -webkit-text-fill-color: transparent;
+        }
+        footer{
+            background-image: linear-gradient(to top right, rgba(15,5,29,0.5) 0%,  rgba(15,5,29,0.5) 100%), url(./assets/footer-bg.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+        }
+        /* h1 */
+        h1 {
+          font-size: 2.55rem !important; /* Base font size for h1 */
+        }
+
+        /* h2 */
+        h2 {
+          font-size: 2.25rem !important; /* Base font size for h2 */
+        }
+
+        /* h3 */
+        h3 {
+          font-size: 1.75rem !important; /* Base font size for h3 */
+        }
+
+        /* h4 */
+        h4 {
+          font-size: 1.5rem !important; /* Base font size for h4 */
+        }
+
+        /* h5 */
+        h5 {
+          font-size: 1.25rem !important; /* Base font size for h5 */
+        }
+
+        /* h6 */
+        h6 {
+          font-size: 1.125rem !important; /* Base font size for h6 */
+        }
+
+        /* p */
+        p {
+          font-size: 1rem !important; /* Base font size for paragraphs */
+        }
+
+        /* small */
+        small {
+          font-size: 0.5rem !important; /* Base font size for small text */
+        }
+
+        /* button */
+        button {
+          font-size: 1.125rem !important; /* Base font size for buttons */
+        }
+        .fade-enter-active, .fade-leave-active {
+          transition: opacity 0.3s;
+        }
+        .fade-enter, .fade-leave-to {
+          opacity: 0;
+        }
+   
+
+
+    </style>
+</head>
+<body class="bg-[#0F051D]">
+    <div id="app" class=" h-[100vh] relative flex flex-wrap gap-20 justify-center">
+        <nav class="py-4 flex flex-wrap items-center justify-between fixed top-0 z-50 left-auto bg-[#0F051D]">
+            <a href="#" class=" block w-fit h-fit animate-pulse">
+                <img loading="lazy" class="h-[3rem]" src="./assets/web3task logo.svg" alt="logo" title="logo" />
+            </a>
+            <transition name="fade">
+                <div class=" w-fit sm:block absolute top-[100%] right-0 z-50 sm:static before:content-[''] before:bg-gradient-to-tr before:from-[#6100FF] before:from-0% before:to-[#00FFD1] before:to-[120%] before:w-xfull before:h-xfull before:absolute before:top-[1%] before:right-[1%] before:z-[-10]
+                sm:before:content-none transition-all duration-500" :class=" showMenu ? 'block' : 'hidden' ">
+                    <ul class=" flex flex-wrap gap-2 flex-col sm:flex sm:flex-row p-4 sm:p-0  text-[var(--text)] font-medium bg-[#0F051D] sm:bg-transparent rounded ">    
+                        <li>
+                            <a href="#" class="block p-2 w-fit capitalize">home</a>
+                        </li>
+                        <li>
+                            <a href="#whyUs" class="block p-2 w-fit capitalize">why us</a>
+                        </li>
+                        <li>
+                            <a href="#HIW" class="block p-2 w-fit capitalize">how it works</a>
+                        </li>
+                        <li>
+                            <a href="#roadmap" class="block p-2 w-fit capitalize">roadmap</a>
+                        </li>
+                        <li>
+                            <a href="#FAQ" class="block p-2 w-fit capitalize">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+            </transition>
+            <button class="menu h-[2rem] w-[2rem] sm:hidden" @click=" showMenu = !showMenu">
+                <div class="rounded-full m-auto transition-all duration-00" :class=" showMenu ? 'bg-[#0f051d] shadow-sm shadow-[#00FFD1] w-1/2 h-1/2 ' : 'bg-[var(--text-l)] w-1/3 h-1/3' ">
+                </div>
+            </button>
+        </nav>
+        <section id="#" ref="home" class="hero-sec min-h-[100vh] mx-[10vw]">
+            <div class="main-hero min-h-[100vh] w-full grid grid-cols-1 grid-rows-1">
+                <div class="details w-full justify-self-stretch flex max-[710px]:flex-col min-[711px]:flex-row flex-wrap items-center justify-center gap-4">
+                    <div class=" h-fit max-[710px]:flex-none max-[711px]:order-2 min-[711px]:flex-1 max-[710px]:text-center min-[711px]:text-left">
+                        <h1 class="text-[var(--text-h)] grad font-bold capitalize">
+                            the on-chain github is here
+                        </h1>
+                        <h6 class="text-[var(--text-m)]">
+                            Spend less money in projects while providing a learning curve for students worldwide.
+                        </h6>
+                    </div>
+                    <div class="max-[710px]:flex-none min-[711px]:flex-1 max-[400px]:w-[100%] max-[560px]:w-[60%] max-[710px]:w-[60%] max-[710px]:order-1  min-[711px]:w-auto">
+                        <img loading="lazy" src="./assets/hero-bg.png" class="max-[560px]:mx-auto max-[560px]:my-auto" alt="" />
+                    </div>
+                    
+                </div>
+                <div class="sponsor-sec flex flex-wrap w-full gap-4 py-4 justify-center">
+                    <div class="flex-auto sm:flex-1" v-for="(i, index) in heroSponsors" >
+                        <img loading="lazy"  :src="i" :key="index" class="h-[24px] mx-auto sm:h-[32px] md:h-[36px] lg:h-[38px] xl:h-[42px]">
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <img loading="lazy" src='./assets/section-divider.svg' alt='divider' class="max-[560px]:w-[25px] min-[561px]:w-[50px] animate-ping" />
+
+        <section id="whyUs" ref="whyUs" class=" h-fit flex flex-wrap flex-col gap-6 w-full mx-[10vw] my-[10vh]" >
+            <h3   class="text-[var(--text-h)] font-medium capitalize text-center">why <span class='blue-gradient'>choose us?</span></h3>
+            <div class="transition-all duration-1000 cards-servies flex flex-wrap items-stretch gap-4 justify-center" :class="IsIntersecting.whyUs ? 'translate-y-0' : 'translate-y-10'">
+                <div class="card rounded-md border border-[#E8E8E8] bg-[#170E24] p-4 flex-1 max-[440px]:basis-full  max-[760px]:flex-1/2 gap-2" v-for="(i, index) in whyUsData">
+                    <div>
+                        <img loading="lazy" class="card-img-top h-[24px] sm:h-[30px] md:h-[32px] lg:h-[40px]" :src="i.img" alt="Title" />
+                        <div class="mt-4">
+                            <h6 class="card-title text-[var(--text-h)]">{{i.title}}</h6>
+                            <p class="card-text text-[var(--text-m)] capitalize mt-2">{{i.content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <img loading="lazy" src='./assets/section-divider.svg' alt='divider' class="max-[560px]:w-[25px] min-[561px]:w-[50px] animate-ping" />
+
+        <section id="HIW"  class="w-full flex flex-wrap flex-col items-center gap-6 mx-[10vw]">
+            <div class="extra-data flex flex-wrap items-center justify-center gap-6">
+                <div class="each-data flex flex-wrap gap-2 items-stretch" v-for="(i, index) in extraData">
+                    <div class="h-fit w-fit p-4 inline-block">
+                        <h4 class="text-[var(--text-h)] font-semibold capitalize text-center">
+                            {{ i.title }}
+                        </h4>
+                        <p class='text-[var(--text-m)] capitalize text-center'>
+                            {{ i.subtitle }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content flex flex-wrap flex-col items-center gap-6">
+                <h3 class="text-[var(--text-h)] font-medium capitalize text-center">
+                    how it <span class="blue-gradient">works!</span>
+                </h3>
+                <div  class="cards-wrapper w-full flex flex-wrap gap-6">
+                    <div class="card flex flex-wrap max-[540px]:flex-col min-[541px]:flex-row items-center gap-4" v-for="(i, index) in HIWData" ref="HIW" :id="`HIW${index}`">
+                        <div class="max-[540px]:w-[60%] min-[541px]:w-[40%]" :class="index % 2 === 0 ? 'max-[540px]:order-none min-[541px]:order-1' : 'max-[540px]:order-none min-[541px]:order-2'" >
+                            <img loading="lazy" class="card-img-top transition-all duration-1000" :src="i.img" alt="Title" :class="index % 2 === 0 ? (IsIntersecting[`HIW${index}`] ?  'translate-x-0' : '-translate-x-10') :  (IsIntersecting[`HIW${index}`] ?  'translate-x-0' : 'translate-x-10')"  />
+                        </div>
+                        <div class="card-body flex-1" :class="index % 2 === 0 ? 'max-[540px]:order-none min-[541px]:order-2 max-[540px]:text-center min-[541px]:text-left' : 'max-[540px]:order-none min-[541px]:order-1 max-[540px]:text-center min-[541px]:text-right'" >
+                            <div class="transition-all duration-1000" :class="index % 2 === 0 ? (IsIntersecting[`HIW${index}`] ?  'translate-x-0' : 'translate-x-10') : (IsIntersecting[`HIW${index}`] ?  'translate-x-0' : '-translate-x-10')">
+                                <h6 class="bg-gradient-to-tr from-[#6100FF] from-30% to-[#00FFD1] to-[70%] font-bold text-transparent bg-clip-text">{{ index + 1 < 10 ? `0${index + 1}` : index + 1 }}</h6>
+                                <h5 class="card-title text-[var(--text-h)]" >{{ i.title }}</h5>
+                                <p class="card-text text-[var(--text-m)]">{{ i.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <img loading="lazy"  src='./assets/section-divider.svg' alt='divider' class="max-[560px]:w-[25px] min-[561px]:w-[50px] animate-ping" />
+
+        <section id="roadmap" ref="roadmap" class="w-full flex flex-wrap flex-col items-center gap-6 mx-[10vw]">
+            <h3 class="blue-gradient text-[var(--text-h)] font-medium capitalize text-center" >roadmap</span></h3>
+            <img loading="lazy" src="./assets/roadmap.svg" alt="road map" class="transition-all duration-1000" :class="IsIntersecting.roadmap ? 'translate-y-0' : 'translate-y-10'" />
+        </section>
+
+        <img loading="lazy" src='./assets/section-divider.svg' alt='divider' class="max-[560px]:w-[25px] min-[561px]:w-[50px] animate-ping" />
+
+        <section id="FAQ" ref="FAQ" class="w-full flex flex-wrap flex-col items-center gap-6 mx-[10vw]">
+            <h3 class="text-[var(--text-h)] font-medium capitalize text-center" >
+                your questions 
+                <br/>
+                <span class='blue-gradient'>
+                    answered!
+                </span>
+            </h3>
+
+            <div class="FAQ-main-content border border-[#E8E8E8] bg-[#170E24] rounded-xl p-4 transition-all duration-1000" :class="IsIntersecting.FAQ ? 'translate-y-0' : 'translate-y-10'"  >
+                <ul class="transition-[height] duration-100">
+                    <li v-for="(i, index) in cryptoFAQ" class="py-2">
+                        <button type="button" class="bg-transparent border-none py-1 capitalize  transition-[color]  duration-100" @click="activeQuest = activeQuest == index ? null : index " :class="activeQuest === index ? 'text-[var(--text)]' : 'text-[var(--text-m)]'">{{i.question}}</button>
+                        <div>
+                            <p class="text-[var(--text-m)] overflow-hidden capitalize transition-[height] duration-100" :class="activeQuest === index ? 'max-h-fit py-2' : 'max-h-0 py-0'" >
+                              {{i.answer}}
+                            </p>
+                        </div>
+                        <hr v-if="index + 1 === cryptoFAQ.length ? false : true"  :class="activeQuest === index ? 'border-[#E8E8E8]' : 'border-[var(--text-l)]'"  />
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+        <img loading="lazy" src='./assets/section-divider.svg' alt='divider' class="max-[560px]:w-[25px] min-[561px]:w-[50px] animate-ping"/>
+
+        <footer id="roadmap" class='flex flex-wrap flex-col gap-6 sm:flex-row  justify-between w-full py-[5vw] px-[10vw]'>
+           <div class="first-footer w-fit flex-1 flex-shrink">
+                <a href="#" class="w-fit mx-auto sm:mx-0 block">
+                    <img loading="lazy" class="h-[24px] sm:h-[30px] md:h-[36px]" src="./assets/web3task logo.svg" alt="logo" />
+                </a>
+                <p class="text-[var(--text-m)] w-full  sm:w-[40%] text-center sm:text-left">
+                    follow us on Twitter, linkedin and instagram to keep up to date with our latest work and announcements.
+                </p>
+           </div>
+           <div class="sitemap">
+                <ul class=" text-[var(--text)] font-medium text-center sm:text-left">
+                    <li>
+                        <h6 class="capitalize font-medium text-[var(--text-h)] p-2">
+                            quick link
+                        </h6>
+                    </li>
+                    <li>
+                        <a href="#prices" class="block p-2  capitalize">prices</a>
+                    </li>
+                    <li>
+                        <a href="#HIW" class="block p-2  capitalize">how it works</a>
+                    </li>
+                    <li>
+                        <a href="#roadmap" class="block p-2  capitalize">roadmap</a>
+                    </li>
+                    <li>
+                        <a href="#FAQ" class="block p-2  capitalize">FAQ</a>
+                    </li>
+                </ul>
+           </div>
+           <div class="copright block text-[var(--text-l)] text-center sm:text-left capitalize sm:basis-full">
+                <p>
+                    copyright &copy;2024 not valid
+                </p>
+            </div>
+        </footer>
+    </div>
+
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+            data(){
+                return{
+                    showMenu:false,
+                    activeQuest : null,
+                    IsIntersecting: {},
+                    heroSponsors : [
+                        './assets/web3dev.svg',
+                        './assets/solana.svg',
+                        './assets/metamask.svg',
+                        './assets/thegraph.svg',
+                        './assets/think&dev.svg',
+                        './assets/polygon.svg',
+                        './assets/lachain.svg'
+                    ],
+                    whyUsData:[
+                        {
+                            title : 'DAOs',
+                            img: './assets/dao.svg',
+                            content : 'Tool for organizations.'
+                        },
+                        {
+                            title : 'Proof-of-Value',
+                            img: './assets/pov.svg',
+                            content : 'Score system for measuring user results.'
+                        },
+                        {
+                            title : 'NFT',
+                            img: './assets/nft.svg',
+                            content : 'Work tokenization and portfolio registration.'
+                        },
+                        {
+                            title : 'Open Source',
+                            img: './assets/open-src.svg',
+                            content : 'Networking for users and projects.'
+                        }
+                    ],
+                    extraData : [
+                        {
+                            title : '4K+',
+                            subtitle : 'community members'
+                        },
+                        {
+                            title : '200',
+                            subtitle : 'active users'
+                        },
+                        {
+                            title : '4h',
+                            subtitle : 'average task due date'
+                        },
+                        {
+                            title : '$15',
+                            subtitle : 'average reward per task'
+                        },
+                    ],
+                    HIWData : [
+                        {
+                            title : 'Setup and connect your wallet.',
+                            content : "Use Trust Wallet, Metamask or any wallet to connect to multiple chains the app.",
+                            goldenTip : null,
+                            img : './assets/wallet.png'
+                        },
+                        {
+                            title : 'Find a task that matches your skills',
+                            content : "Make your offers and show why you deserve the job.",
+                            goldenTip : 'Golden Tips: Deliver on time, Develop your profile and take care of your portfolio, the App has an on-chain scoring system to score contributions.',
+                            img : './assets/find-match.png'
+                        },
+                        {
+                            title : 'Complete the task and earn rewards',
+                            content : "Instant payments, fast transactions and proven professional authority building. NFT to prove the specialties and scores of projects carried out in your profile.",
+                            goldenTip : null,
+                            img : './assets/complete-task.png'
+                        }
+                    ],
+                    cryptoFAQ : [
+                        {
+                            question: "What is cryptocurrency?",
+                            answer: "Cryptocurrency is a digital or virtual form of currency that uses cryptography for security and operates independently of a central bank. It typically utilizes decentralized technology, such as blockchain, for its creation, management, and transactions."
+                        },
+                        {
+                            question: "How does cryptocurrency work?",
+                            answer: "Cryptocurrencies work through a technology called blockchain, which is a decentralized ledger that records all transactions across a network of computers. Each transaction is verified by network nodes through cryptography and added to the blockchain, making it secure and tamper-proof."
+                        },
+                        {
+                            question: "What is Bitcoin?",
+                            answer: "Bitcoin is the first and most well-known cryptocurrency, created by an anonymous person or group of people using the pseudonym Satoshi Nakamoto in 2009. It operates on a decentralized peer-to-peer network and has a limited supply of 21 million coins."
+                        },
+                        {
+                            question: "How can I buy cryptocurrency?",
+                            answer: "You can buy cryptocurrency from online exchanges, which are platforms that allow you to trade digital currencies for fiat money or other cryptocurrencies. Popular exchanges include Coinbase, Binance, and Kraken. You'll typically need to create an account, verify your identity, and link a payment method to purchase cryptocurrencies."
+                        },
+                        {
+                            question: "Is cryptocurrency safe to invest in?",
+                            answer: "Investing in cryptocurrency carries risks like any other investment. Prices can be highly volatile, and there's the risk of hacking, regulatory changes, and market manipulation. It's essential to do thorough research, diversify your investments, and only invest what you can afford to lose."
+                        }
+                    ]
+                }
+                
+            },
+            methods:{
+                animate(ref){
+                    // Intersection Observer options
+                    const options = {
+                      root: null, // Use the viewport as the root
+                      rootMargin: '0px', // No margin around the root
+                      threshold: 0.5 // Trigger when half of the target is visible
+                    };
+
+                        // Intersection Observer callback function
+                    const callback = (entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                              this.IsIntersecting[ref.id] = entry.isIntersecting;
+                              // Perform actions when the target is intersecting
+                              console.log(this.IsIntersecting);
+                              
+                            }
+                        })
+                    };
+
+                    // Create an Intersection Observer instance
+                    const observer = new IntersectionObserver(callback, options);
+
+                    // Start observing the target element
+                    observer.observe(ref);
+                }
+            },
+            mounted() {
+
+                Object.keys(this.$refs).forEach(elem =>{
+                    if( this.$refs[elem].length !== undefined){
+                        this.$refs[elem].forEach((i, index) => {
+                            this.animate(i);
+                        })
+                    }else{
+                        this.animate(this.$refs[elem]);
+                    }
+                })
+                window.addEventListener('scroll', ()=>{
+                    return this.showMenu = this.showMenu ? !this.showMenu : this.showMenu;
+                })
+            }
+
+        }).mount('#app');
+    </script>
+</body>
+</html>
