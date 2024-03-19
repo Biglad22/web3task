@@ -118,9 +118,9 @@
                 <img loading="lazy" class="h-[3rem]" src="./assets/web3task logo.svg" alt="logo" title="logo" />
             </a>
             <transition name="fade">
-                <div class=" w-fit sm:block absolute top-[100%] right-0 z-50 sm:static before:content-[''] before:bg-gradient-to-tr before:from-[#6100FF] before:from-0% before:to-[#00FFD1] before:to-[120%] before:w-xfull before:h-xfull before:absolute before:top-[1%] before:right-[1%] before:z-[-10]
-                sm:before:content-none transition-all duration-500" :class=" showMenu ? 'block' : 'hidden' ">
-                    <ul class=" flex flex-wrap gap-2 flex-col sm:flex sm:flex-row p-4 sm:p-0  text-[var(--text)] font-medium bg-[#0F051D] sm:bg-transparent rounded ">    
+                <div class=" w-fit min-[710px]:block absolute top-[100%] right-0 z-50 min-[710px]:static before:content-[''] before:bg-gradient-to-tr before:from-[#6100FF] before:from-0% before:to-[#00FFD1] before:to-[120%] before:w-xfull before:h-xfull before:absolute before:top-[1%] before:right-[1%] before:z-[-10]
+                min-[710px]:before:content-none transition-all duration-500" :class=" showMenu ? 'block' : 'hidden' ">
+                    <ul class=" flex flex-wrap gap-2 flex-col min-[710px]:flex min-[710px]:flex-row p-4 min-[710px]:p-0  text-[var(--text)] font-medium bg-[#0F051D] min-[710px]:bg-transparent rounded ">    
                         <li>
                             <a href="#" class="block p-2 w-fit capitalize">home</a>
                         </li>
@@ -139,7 +139,7 @@
                     </ul>
                 </div>
             </transition>
-            <button class="menu h-[2rem] w-[2rem] sm:hidden" @click=" showMenu = !showMenu">
+            <button class="menu h-[2rem] w-[2rem] min-[710px]:hidden" @click=" showMenu = !showMenu">
                 <div class="rounded-full m-auto transition-all duration-00" :class=" showMenu ? 'bg-[#0f051d] shadow-sm shadow-[#00FFD1] w-1/2 h-1/2 ' : 'bg-[var(--text-l)] w-1/3 h-1/3' ">
                 </div>
             </button>
